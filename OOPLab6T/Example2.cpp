@@ -66,7 +66,12 @@ namespace SpaceExample2 {
 		}
 		virtual double norma() override
 		{
-			return sqrt(v[0][0] * v[1][1] - v[0][1] * v[1][0]);
+			return v[0][0] * v[1][1] - v[0][1] * v[1][0];
+
 		}
 	};
+	int mainExample2()
+	{
+		return 0;
+	}
 }
