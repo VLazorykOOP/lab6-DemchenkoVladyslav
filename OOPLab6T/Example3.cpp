@@ -9,7 +9,10 @@ namespace SpaceExample3 {
 		string fullName;
 		unsigned unsigned int age;
 		virtual void Show() = 0;
-		virtual void Input() = 0;
+		virtual void Input() {
+			cin >> fullName;
+			cin >> age;
+		}
 		Human()
 		{
 			fullName = "Newborn";
@@ -34,10 +37,6 @@ namespace SpaceExample3 {
 			cout << fullName << endl;
 			cout << "Age: " << age << endl;
 		}
-		virtual void Input() override
-		{
-
-		}
 		Father(string fN, unsigned int a) : Human(fN, a) {
 
 		}
@@ -50,10 +49,6 @@ namespace SpaceExample3 {
 			cout << "Mother:" << endl;
 			cout << fullName << endl;
 			cout << "Age: " << age << endl;
-		}
-		virtual void Input() override
-		{
-
 		}
 		Mother(string fN, unsigned int a) : Human(fN, a) {
 
@@ -75,10 +70,6 @@ namespace SpaceExample3 {
 			cout << "Daughter:" << endl;
 			cout << fullName << endl;
 			cout << "Age: " << age << endl;
-		}
-		virtual void Input() override
-		{
-
 		}
 	};
 	class Daughter2 : virtual public Father, virtual public Mother, public virtual Human

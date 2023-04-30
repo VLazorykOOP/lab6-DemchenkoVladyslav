@@ -56,9 +56,9 @@ namespace SpaceExample1 {
 		D112(int a, int b, int c, double d, int e) : D12(a, b, c, d, e), D1::D1(a), dt(e + 1.) {}
 		void showDat()
 		{
-		  //  std::cout << "B12VV::D1V::Base::dat =  " << D12::D1::Base::dat << std::endl;
-		   // std::cout << "B12VV::D1V::Base::dat =  " << Base::dat << std::endl;
-	  //      std::cout << "B12VV::D1V::Base::dat =  " << D12::D2::Base::dat << std::endl;
+		   std::cout << "B12VV::D1V::Base::dat =  " << D12::D1::Base::dat << std::endl;
+		  std::cout << "B12VV::D1V::Base::dat =  " << Base::dat << std::endl;
+	       std::cout << "B12VV::D1V::Base::dat =  " << D12::D2::Base::dat << std::endl;
 		}
 	};
 
