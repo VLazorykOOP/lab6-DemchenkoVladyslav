@@ -3,93 +3,117 @@
 #include <string>
 using namespace std;
 namespace SpaceExample3 {
-    // MultipleiInherance.cpp 
-// Ієрархія типів складається з сутностей: 
-// машина, пасажирський транспорт і автобус.
-//
+	class Human
+	{
+	protected:
+		string fullName;
+		unsigned unsigned int age;
+		virtual void Show() = 0;
+		virtual void Input() = 0;
+		Human()
+		{
+			fullName = "Newborn";
+			age = 0;
+		}
+		Human(string fN, unsigned unsigned int a)
+		{
+			fullName = fN;
+			age = a;
+		}
+		virtual ~Human()
+		{
+			cout << "Deleted " << fullName << endl;
+		}
+	};
+	class Father :virtual public Human
+	{
+	public:
+		virtual void Show() override
+		{
+			cout << "Father:" << endl;
+			cout << fullName << endl;
+			cout << "Age: " << age << endl;
+		}
+		virtual void Input() override
+		{
 
+		}
+		Father(string fN, unsigned int a) : Human(fN, a) {
 
-    class Car {
-    protected:
-        string marka;
-        float power;
-        int numberOfWheels;
-    public:
-        Car() : marka("Neoplan"), power(5.2f), numberOfWheels(6) {
-        }
-        Car(string m, float p, int nw) : marka(m), power(p), numberOfWheels(nw) {
-        }
-        string getMarka() { return marka; }
-        void setMarka(string m) { marka = m; }
-        float getPower() {
-            return power;
-        }
-        void setPower(float p) {
-            power = p;
-        }
-        int getNumberOfWheels() {
-            return numberOfWheels;
-        }
-        void setNumberOfWheels(int n) {
-            numberOfWheels = n;
-        }
-        string toString() {
-            string r = marka + "\t" + to_string(power) + "\t" + to_string(numberOfWheels) + "\t";
-            return r;
-        }
-    };
+		}
+	};
+	class Mother : virtual public Human
+	{
+	public:
+		virtual void Show() override
+		{
+			cout << "Mother:" << endl;
+			cout << fullName << endl;
+			cout << "Age: " << age << endl;
+		}
+		virtual void Input() override
+		{
 
-    class PassengerTransport {
-    protected:
-        int flightNumber;
-        int numberOfPassengerSeats;
-    public:
-        PassengerTransport() : flightNumber(101), numberOfPassengerSeats(45) {}
-        PassengerTransport(int f, int n) : flightNumber(f), numberOfPassengerSeats(n) {}
-        int  getFlightNumber() { return flightNumber; }
-        void setFlightNumber(int f) { flightNumber = f; }
-        int getNumberOfPassengerSeats() { return numberOfPassengerSeats; }
-        void setnumberOfPassengerSeats(int n) { numberOfPassengerSeats = n; }
-        string toString() {
-            string r = to_string(flightNumber) + "\t" + to_string(numberOfPassengerSeats) + "\t";
-            return r;
-        }
-    };
-    class AutoBus : public Car, public  PassengerTransport
-    {
-        string busRoute;
-    public:
-        AutoBus() : busRoute("Kyiv-Chernivci") {}
-        AutoBus(string m, float p, int nw, int f, int n, string bs)
-            : Car(m, p, nw), PassengerTransport(f, n), busRoute(bs) {}
-        string getbusRoute() {
-            return busRoute;
-        }
-        void setbusRoute(string bs) { busRoute = bs; }
+		}
+		Mother(string fN, unsigned int a) : Human(fN, a) {
 
-        string toString() {
-            string r = Car::toString() + PassengerTransport::toString() + busRoute;
-            return r;
-        }
-    };
+		}
+	};
+	class Daughter1 : virtual public Human
+	{
+	public:
+		Mother mother;
+		Father father;
+		Daughter1(string fN, unsigned int a, Mother m, Father f) : Human(fN, a), mother(m), father(f)
+		{
 
-    int mainExample3()
-    {
-        AutoBus def;
-        AutoBus lvCh("Iveko", 6.2f, 6, 301, 40, "Lviv-Chernivci");
-        AutoBus* pVnCn = new AutoBus();
-        pVnCn->setMarka("Ikarus");
-        pVnCn->setPower(7.2f);
-        pVnCn->setNumberOfWheels(6);
-        pVnCn->setFlightNumber(403);
-        pVnCn->setnumberOfPassengerSeats(42);
-        pVnCn->setbusRoute("Vinnicya-Chernivci");
+		}
+		virtual void Show() override
+		{
+			father.Show();
+			mother.Show();
+			cout << "Daughter:" << endl;
+			cout << fullName << endl;
+			cout << "Age: " << age << endl;
+		}
+		virtual void Input() override
+		{
 
-        cout << def.toString() << endl;
-        cout << lvCh.toString() << endl;
-        cout << pVnCn->toString() << endl;
-        return 0;
-    }
+		}
+	};
+	class Daughter2 : virtual public Father, virtual public Mother, public virtual Human
+	{
+	public:
+		Daughter2(string fN, unsigned int a, Mother m, Father f) : Human(fN, a), Mother(m), Father(f)
+		{
+
+		}
+		virtual void Show() override
+		{
+			Mother::Show();
+			Father::Show();
+			cout << "Daughter:" << endl;
+			cout << fullName << endl;
+			cout << "Age: " << age << endl;
+		}
+		virtual void Input() override
+		{
+
+		}
+	};
+	int mainExample3()
+	{
+		//Human h = Human("Human 1", 18); не можна створити об'єкт абстрактного класу
+		Mother m = Mother("Mother 1", 33);
+		Father f = Father("Father 1", 34);
+		Daughter1 d1 = Daughter1("Daughter 1", 12, m, f);
+		Daughter2 d2 = Daughter2("Daughter 2", 9, m, f);
+		m.Show();
+		f.Show();
+		d1.Show();
+		d2.Show();
+		return 0;
+	}
 
 
 }

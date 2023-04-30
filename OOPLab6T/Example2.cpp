@@ -72,6 +72,20 @@ namespace SpaceExample2 {
 	};
 	int mainExample2()
 	{
+		cout << "Complex 2 - 3i" << endl;
+		cout << "Norma is:" << endl;
+		Complex c = Complex(2, -3);
+		cout << c.norma() << endl;
+		cout << "Vector with 10 2" << endl;
+		Vector v = Vector(2);
+		cout << "Norma is:" << endl;
+		cout << v.norma() << endl;
+		cout << "Matrix" << endl;
+		cout << "1 2" << endl;
+		cout << "3 4" << endl;
+		Matrix m = Matrix(1,2,3,4);
+		cout << "Norma is:" << endl;
+		cout << m.norma() << endl;
 		return 0;
 	}
 }
